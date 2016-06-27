@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="quoteText/html; charset=UTF-8" />
+</head>
+<body>
+	<form action="#" th:action="@{/quote}" method="post" th:object="${quote}">
+		<label for="quoteText"> Írj valamit a vendégkönyvbe: </label> <br/>
+		<textarea name="quoteText" id="quoteText" th:field="*{quoteText}"> </textarea>
+    	<!--<input type="quoteText" th:field="*{quoteText}" />-->
+    	<input type="submit" value="Elküldés" /><br/>
+	</form>
+
+	<p th:each="quote : ${quotes}"
+	   th:text="${quote.quoteText}">A</p>
+</body>
+</html>
