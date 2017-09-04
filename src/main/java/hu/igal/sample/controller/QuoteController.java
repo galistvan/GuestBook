@@ -1,5 +1,6 @@
 package hu.igal.sample.controller;
 
+import hu.igal.sample.service.EmailService;
 import hu.igal.sample.service.QuoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class QuoteController {
 
 	@Autowired
 	private QuoteService quoteService;
+	
+	@Autowired
+	private EmailService emailService;
 
 	@RequestMapping(value = "/quotes", method = RequestMethod.GET)
 	public String showQuoteForm(Model model) {
@@ -29,6 +33,7 @@ public class QuoteController {
 	@RequestMapping(value = "/quote", method = RequestMethod.POST)
 	public String processQuote(Model model, @ModelAttribute(value = "quote") Quote quote) {
 		quoteService.addQuote(quote);
+		emailService.sendQuoteMessage(quote);
 		return "redirect:/quotes";
 	}
 }

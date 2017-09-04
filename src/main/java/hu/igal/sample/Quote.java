@@ -11,5 +11,8 @@ public class Quote {
 		this.quoteText = quoteText;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "The quote text is: " + quoteText;
+	}
 }
